@@ -35,26 +35,24 @@ $ make -j12 && make install (this install stuff under '/bin/')
 
 $ ./bin/divider_tests
 
-(See also the existing  'build-and-run' script)
-
 ## Prerequisites
 
 You will need:
 
  * A modern C/C++ compiler
- * CMake 3.1+ installed 
+ * CMake 3.1+ installed
 
 ### Building The Project
 
 #### Git Clone
 
-First we need to check out the git repo:
+First, we need to check out the git repo:
 
 ```bash
 ❯ mkdir ~/workspace
 ❯ cd ~/workspace
 > git submodule update --init --recursive
-❯ git clone https://github.com/rauhersu/konvertjson 
+❯ git clone https://github.com/rauhersu/konvertjson
 ❯ cd my-project
 ❯ bash build-and-run
 ```
@@ -107,4 +105,4 @@ Open sourced under MIT license, the terms of which can be read here — [MIT Lic
 
 ### Acknowledgements
 
-This project is a derivative of the [CMake Tutorial](https://cmake.org/cmake-tutorial/), and the [https://github.com/kigster/cmake-project-template](cmake-project-template).
+This project is a derivative of the [CMake Tutorial](https://cmake.org/cmake-tutorial/), and the [cmake-project-template](https://github.com/kigster/cmake-project-template).
