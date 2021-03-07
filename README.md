@@ -1,19 +1,24 @@
-[![Build Status](https://travis-ci.org/kigster/cmake-project-template.svg?branch=master)](https://travis-ci.org/kigster/cmake-project-template)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkigster%2Fcmake-project-template.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkigster%2Fcmake-project-template?ref=badge_shield)
+# konvertjson
 
-# CMake C++ Project Template
+### TODOs
 
-### Division with a remainder library
+This is a WIP project, some ideas to be examined:
 
-Thank you for your interest in this project!
++ Include Travis + license scan
++ See the templates already done by *tista (see my notes)
++ Split up the current template in two: one for Optional, another for no optional (mandatory)
++ Return pair (all return values there) vs return boolean (just return a bool for a more fluent API, and
+  return other output arguments as part of the function call arguments)
++ Return a bool + err description
++ Validate callback to do extra work and return value as : return ParseReturn || ValidateReturn
++ I am just managing builtins + optional builtins. Next step is vector of builtins + optional vector
++ See the 'High order Perl ideas': list of 'things to do' to fix the recursion pattern
++ likely and unlikely with hint
++ Name the current functions with 'builtin'
++ Use the libraries for C++ introspection (see my notes) to walk through the fields of the struct
 
-Are you just starting with `CMake` or C++?
-
-Do you need some easy-to-use starting point, but one that has the basic moving parts you are likely going to need on any medium sized project?
-
-Do you believe in test-driven development, or at the very lest — write your tests *together* with the feature code? If so you'd want to start your project pre-integrated with a good testing framework.
-
-Divider is a minimal project that's kept deliberately very small. When you build it using CMake/make (see below) it generates:
+konvertjson is a minimal project that's kept deliberately very small.
+When you build it using CMake/make (see below) it generates:
 
  1. A tiny **static library** `lib/libdivision.a`,
  2. **A command line binary `bin/divider`**, which links with the library,
@@ -22,13 +27,22 @@ Divider is a minimal project that's kept deliberately very small. When you build
 
 ## Usage
 
-### Prerequisites
+$ cmake .
+
+$ make -j12 && make install (this install stuff under '/bin/')
+
+## Running the tests
+
+$ ./bin/divider_tests
+
+(See also the existing  'build-and-run' script)
+
+## Prerequisites
 
 You will need:
 
  * A modern C/C++ compiler
- * CMake 3.1+ installed (on a Mac, run `brew install cmake`)
- * If you prefer to code in a great IDE, I highly recommend [Jetbrains CLion](https://www.jetbrains.com/clion/). It is fully compatible with this project.
+ * CMake 3.1+ installed 
 
 ### Building The Project
 
@@ -39,16 +53,12 @@ First we need to check out the git repo:
 ```bash
 ❯ mkdir ~/workspace
 ❯ cd ~/workspace
-❯ git clone \
-    https://github.com/kigster/cmake-project-template \
-    my-project
+> git submodule update --init --recursive
+❯ git clone https://github.com/rauhersu/konvertjson 
 ❯ cd my-project
 ❯ bash build-and-run
 ```
-
-The output of this script is rather long and is shown [on this screenshot](doc/build-and-run.png).
-
-The script `build-and-run` is a short-cut — you shouldn't really be using this script to build your project, but see how to do it properly below.
+The script `build-and-run` is a short-cut — you shouldn't really be using this script to build your project.
 
 #### Project Structure
 
@@ -56,101 +66,17 @@ There are three empty folders: `lib`, `bin`, and `include`. Those are populated 
 
 The rest should be obvious: `src` is the sources, and `test` is where we put our unit tests.
 
-Now we can build this project, and below we show three separate ways to do so.
+Now we can build this project:
 
 #### Building Manually
 
 ```bash
 ❯ rm -rf build && mkdir build
-❯ git submodule init && git submodule update
+❯ git submodule update --init --recursive
 ❯ cd build
 ❯ cmake ..
 ❯ make && make install
 ❯ cd ..
-```
-
-
-#### Running the tests
-
-```bash
-❯ bin/divider_tests
-[==========] Running 5 tests from 1 test case.
-[----------] Global test environment set-up.
-[----------] 5 tests from DividerTest
-[ RUN      ] DividerTest.5_DivideBy_2
-[       OK ] DividerTest.5_DivideBy_2 (1 ms)
-[ RUN      ] DividerTest.9_DivideBy_3
-[       OK ] DividerTest.9_DivideBy_3 (0 ms)
-[ RUN      ] DividerTest.17_DivideBy_19
-[       OK ] DividerTest.17_DivideBy_19 (0 ms)
-[ RUN      ] DividerTest.Long_DivideBy_Long
-[       OK ] DividerTest.Long_DivideBy_Long (0 ms)
-[ RUN      ] DividerTest.DivisionByZero
-[       OK ] DividerTest.DivisionByZero (0 ms)
-[----------] 5 tests from DividerTest (1 ms total)
-
-[----------] Global test environment tear-down
-[==========] 5 tests from 1 test case ran. (1 ms total)
-[  PASSED  ] 5 tests.
-```
-
-#### Running the CLI Executable
-
-Without arguments, it prints out its usage:
-
-```bash
-❯ bin/divider
-
-Divider © 2018 Monkey Claps Inc.
-
-Usage:
-	divider <numerator> <denominator>
-
-Description:
-	Computes the result of a fractional division,
-	and reports both the result and the remainder.
-```
-
-But with arguments, it computes as expected the denominator:
-
-```bash
-❯ bin/divider 112443477 12309324
-
-Divider © 2018 Monkey Claps Inc.
-
-Division : 112443477 / 12309324 = 9
-Remainder: 112443477 % 12309324 = 1659561
-```
-
-### Building in CLion
-
-> **NOTE**: Since JetBrains software [does not officially support git submodules](https://youtrack.jetbrains.com/issue/IDEA-64024), you must run `git submodule init && git submodule update` before starting CLion on a freshly checked-out repo.
-
-> **NOTE**: We recommend that you copy file `.idea/workspace.xml.example` into `.idea/workspace.xml` **before starting CLion**. It will provide a good starting point for your project's workspace.
-
-Assuming you've done the above two steps, you can start CLion, and open the project's top level folder. CLion should automatically detect the top level `CMakeLists.txt` file and provide you with the full set of build targets.
-
-Select menu option **Build   ➜ Build Project**, and then **Build ➜ Install**.
-
-![CLION](doc/cmake-clion.png)
-
-The above screenshot is an example of CLion with this project open.
-
-### Using it as a C++ Library
-
-We build a static library that, given a simple fraction will return the integer result of the division, and the remainder.
-
-We can use it from C++ like so:
-
-```cpp
-#include <iostream>
-#include <division>
-
-Fraction       f = Fraction{25, 7};
-DivisionResult r = Division(f).divide();
-
-std::cout << "Result of the division is " << r.division;
-std::cout << "Remainder of the division is " << r.remainder;
 ```
 
 ## File Locations
@@ -162,8 +88,6 @@ std::cout << "Remainder of the division is " << r.remainder;
 
 Tests:
 
- * A `test` folder with the automated tests and fixtures that mimics the directory structure of `src`.
- * For every C++ file in `src/A/B/<name>.cpp` there is a corresponding test file `test/A/B/<name>_test.cpp`
  * Tests compile into a single binary `test/bin/runner` that is run on a command line to run the tests.
  * `test/lib` folder with a git submodule in `test/lib/googletest`, and possibly other libraries.
 
@@ -171,19 +95,16 @@ Tests:
 
 **Pull Requests are WELCOME!** Please submit any fixes or improvements, and I promise to review it as soon as I can at the project URL:
 
- * [Project Github Home](https://github.com/kigster/cmake-project-template)
- * [Submit Issues](https://github.com/kigster/cmake-project-template/issues)
- * [Pull Requests](https://github.com/kigster/cmake-project-template/pulls)
+ * [Project Github Home](https://github.com/rauhersu/konvertjson)
+ * [Submit Issues](https://github.com/kigster/rauhersu/konvertjson)
+ * [Pull Requests](https://github.com/kigster/rauhersu/konvertjson)
 
 ### License
 
-&copy; 2017-2019 Konstantin Gredeskoul.
+&copy; 2021 Raúl Hernández.
 
 Open sourced under MIT license, the terms of which can be read here — [MIT License](http://opensource.org/licenses/MIT).
 
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkigster%2Fcmake-project-template.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkigster%2Fcmake-project-template?ref=badge_large)
-
 ### Acknowledgements
 
-This project is a derivative of the [CMake Tutorial](https://cmake.org/cmake-tutorial/), and is aimed at saving time for starting new projects in C++ that use CMake and GoogleTest.
+This project is a derivative of the [CMake Tutorial](https://cmake.org/cmake-tutorial/), and the [https://github.com/kigster/cmake-project-template](cmake-project-template).
