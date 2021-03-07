@@ -13,7 +13,7 @@ This is a WIP project, some ideas to be examined:
 + Validate callback to do extra work and return value as : return ParseReturn || ValidateReturn
 + I am just managing builtins + optional builtins. Next step is vector of builtins + optional vector
 + See the 'High order Perl ideas': list of 'things to do' to fix the recursion pattern
-+ likely and unlikely with hint
++ 'likely' and 'unlikely' optimizatoins (with parameter to be use as a hint?)
 + Name the current functions with 'builtin'
 + Use the libraries for C++ introspection (see my notes) to walk through the fields of the struct
 
@@ -105,4 +105,4 @@ Open sourced under MIT license, the terms of which can be read here — [MIT Lic
 
 ### Acknowledgements
 
-This project is a derivative of the [CMake Tutorial](https://cmake.org/cmake-tutorial/), and the [cmake-project-template](https://github.com/kigster/cmake-project-template).
+This project uses the [CMake Tutorial](https://cmake.org/cmake-tutorial/), and the [cmake-project-template](https://github.com/kigster/cmake-project-template).
