@@ -16,6 +16,7 @@ This is a WIP project, some ideas to be examined:
 + 'likely' and 'unlikely' optimizatoins (with parameter to be use as a hint?)
 + Name the current functions with 'builtin'
 + Use the libraries for C++ introspection (see my notes) to walk through the fields of the struct
++ Explain the dependency with rapidjson
 
 konvertjson is a minimal project that's kept deliberately very small.
 When you build it using CMake/make (see below) it generates:
@@ -51,7 +52,7 @@ First, we need to check out the git repo:
 ```bash
 ❯ mkdir ~/workspace
 ❯ cd ~/workspace
-> git submodule update --init --recursive
+❯ git submodule update --init --recursive
 ❯ git clone https://github.com/rauhersu/konvertjson
 ❯ cd my-project
 ❯ bash build-and-run
