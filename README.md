@@ -4,6 +4,8 @@
 
 This is a WIP project, some ideas to be examined:
 
++ Learn more about github:
+  https://docs.github.com/en/github/using-git/pushing-commits-to-a-remote-repository
 + Include Travis + license scan
 + See the templates already done by *tista (see my notes)
 + Split up the current template in two: one for Optional, another for no optional (mandatory)
