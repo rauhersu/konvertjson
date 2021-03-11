@@ -20,6 +20,7 @@ This is a WIP project, some ideas to be examined:
 + Use the libraries for C++ introspection (see my notes) to walk through the fields of the struct
 + Explain the dependency with rapidjson
 + Have a look at these cmake options to incorporate here:https://github.com/rauhersu/test-cmake-template
++ See anl** github for inspiration
 
 konvertjson is a minimal project that's kept deliberately very small.
 When you build it using CMake/make (see below) it generates:
