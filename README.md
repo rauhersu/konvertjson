@@ -4,6 +4,7 @@
 
 This is a WIP project, some ideas to be examined:
 
++ Use the 'wiki' tab for misc things ...
 + Learn more about github:
   https://docs.github.com/en/github/using-git/pushing-commits-to-a-remote-repository
 + Include Travis + license scan
